@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Terroir — Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Terroir<small>Restaurant · Abidjan</small></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="menu.html" class="active">Menu</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="page-head">
+    <div class="page-head-inner">
+      <div>
+        <p class="eyebrow">Notre Carte</p>
+        <h1 class="ph-title">Le Menu</h1>
+      </div>
+    </div>
+    <div class="filter-row">
+      <button class="filt on" onclick="filt('tous',this)">Tout</button>
+      <button class="filt" onclick="filt('entrees',this)">Entrées</button>
+      <button class="filt" onclick="filt('plats',this)">Plats</button>
+      <button class="filt" onclick="filt('desserts',this)">Desserts</button>
+      <button class="filt" onclick="filt('boissons',this)">Boissons</button>
+    </div>
+  </div>
+
+  <div class="menu-grid" id="mg"></div>
+
+  <div class="ft">
+    <div class="ft-logo">Terroir</div>
+    <p>© 2026 Terroir Restaurant — Abidjan, Côte d'Ivoire</p>
+  </div>
+</main>
+
+<script>
+const items=[
+  {c:'entrees',n:'Velouté Plantain',d:'Crème de banane plantain, lait de coco, cajou grillées et piment doux.',p:'5 500 F',t:'Végétarien'},
+  {c:'entrees',n:'Tartare de Thon',d:'Thon rouge, avocat, sésame toasté, vinaigrette yuzu-citron.',p:'7 800 F',t:'Poisson'},
+  {c:'entrees',n:'Foie Gras Pressé',d:'Foie gras mi-cuit, chutney mangue-gingembre, brioche maison.',p:'10 200 F',t:'Signature'},
+  {c:'entrees',n:'Salade du Jardin',d:'Légumes de saison, vinaigrette au miel d\'acacia, herbes fraîches.',p:'4 500 F',t:'Végétarien'},
+  {c:'plats',n:'Kedjenou Revisité',d:'Poulet fermier mijoté aux épices douces, riz jollof et légumes confits.',p:'13 000 F',t:'Spécialité'},
+  {c:'plats',n:'Filet de Bar',d:'Bar de l\'Atlantique, beurre blanc aux agrumes, purée de manioc.',p:'15 500 F',t:'Poisson'},
+  {c:'plats',n:'Côte de Veau',d:'Veau fermier rôti lentement, jus à l\'hibiscus, grenailles et haricots.',p:'19 000 F',t:'Viande'},
+  {c:'plats',n:'Risotto Morilles',d:'Riz carnaroli, morilles sauvages, parmesan 24 mois, truffe.',p:'12 000 F',t:'Végétarien'},
+  {c:'desserts',n:'Chocolat Coulant',d:'Cœur coulant Valrhona 70%, glace vanille Bourbon, tuile amande.',p:'4 800 F',t:'Classique'},
+  {c:'desserts',n:'Tarte Tropicale',d:'Mangue fraîche, passion, crème légère coco, sablé breton.',p:'4 200 F',t:'Fruité'},
+  {c:'desserts',n:'Plateau Fromages',d:'Sélection de 4 fromages affinés, confiture de figues et noix.',p:'5 800 F',t:'À partager'},
+  {c:'boissons',n:'Cocktail Terroir',d:'Gin local, sirop de gingembre, citron vert, basilic thaï.',p:'3 800 F',t:'Signature'},
+  {c:'boissons',n:'Verre de Vin',d:'Sélection du sommelier — Bordeaux, Bourgogne ou Côtes du Rhône.',p:'5 000 F',t:'Vin'},
+  {c:'boissons',n:'Jus Pressé',d:'Bissap, gingembre-citron ou ananas-menthe, selon arrivage du jour.',p:'2 200 F',t:'Sans Alcool'},
+];
+function render(f){
+  const g=document.getElementById('mg');
+  const list=f==='tous'?items:items.filter(i=>i.c===f);
+  g.innerHTML=list.map(i=>`
+    <div class="mcard">
+      <div class="mcard-top">
+        <span class="mcard-name">${i.n}</span>
+        <span class="mcard-price">${i.p}</span>
+      </div>
+      <p class="mcard-desc">${i.d}</p>
+      <span class="mcard-badge">${i.t}</span>
+    </div>
+  `).join('');
+}
+function filt(cat,btn){
+  document.querySelectorAll('.filt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');render(cat);
+}
+render('tous');
+</script>
+</body>
+</html>
