@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Terroir — Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Terroir<small>Restaurant · Abidjan</small></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-grid">
+
+  <div class="contact-left">
+    <p class="eyebrow">Nous Rejoindre</p>
+    <h1>Réservez<br>votre table</h1>
+
+    <div class="info-row">
+      <div class="info-key">Adresse</div>
+      <div class="info-val">12 Avenue Nogues<br>Le Plateau, Abidjan<br>Côte d'Ivoire</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">Horaires</div>
+      <div class="info-val">Lun – Ven &nbsp;: 12h00 – 23h00<br>Sam – Dim : 11h00 – 00h00</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">Téléphone</div>
+      <div class="info-val">+225 27 22 00 00 00</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">Email</div>
+      <div class="info-val">bonjour@terroir-abidjan.ci</div>
+    </div>
+
+    <div class="map-placeholder">📍</div>
+  </div>
+
+  <div class="contact-right">
+    <h2>Formulaire de réservation</h2>
+
+    <div class="frow">
+      <div class="fgroup">
+        <label>Prénom</label>
+        <input type="text" placeholder="Jean" id="fp"/>
+      </div>
+      <div class="fgroup">
+        <label>Nom</label>
+        <input type="text" placeholder="Kouassi" id="fn"/>
+      </div>
+    </div>
+
+    <div class="fgroup">
+      <label>Email</label>
+      <input type="email" placeholder="jean@email.com" id="fe"/>
+    </div>
+
+    <div class="fgroup">
+      <label>Téléphone</label>
+      <input type="tel" placeholder="+225 07 00 00 00 00" id="ft2"/>
+    </div>
+
+    <div class="frow">
+      <div class="fgroup">
+        <label>Date</label>
+        <input type="date" id="fd"/>
+      </div>
+      <div class="fgroup">
+        <label>Heure</label>
+        <select id="fh">
+          <option value="">Choisir…</option>
+          <option>12h00</option><option>12h30</option><option>13h00</option>
+          <option>19h00</option><option>19h30</option><option>20h00</option>
+          <option>20h30</option><option>21h00</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="fgroup">
+      <label>Nombre de couverts</label>
+      <select id="fc">
+        <option value="">Choisir…</option>
+        <option>1 personne</option><option>2 personnes</option>
+        <option>3 personnes</option><option>4 personnes</option>
+        <option>5 personnes</option><option>6+ personnes</option>
+      </select>
+    </div>
+
+    <div class="fgroup">
+      <label>Occasion (optionnel)</label>
+      <select id="fo">
+        <option value="">Aucune occasion particulière</option>
+        <option>Anniversaire</option><option>Repas d'affaires</option>
+        <option>Dîner romantique</option><option>Autre</option>
+      </select>
+    </div>
+
+    <div class="fgroup">
+      <label>Message (optionnel)</label>
+      <textarea rows="3" placeholder="Allergies, préférences, demandes spéciales…" id="fm"></textarea>
+    </div>
+
+    <button class="btn-primary" onclick="send()">Envoyer la demande</button>
+    <p class="success" id="suc">✓ Demande reçue — nous confirmons sous 24h.</p>
+  </div>
+
+  <div class="ft">
+    <div class="ft-logo">Terroir</div>
+    <p>© 2026 Terroir Restaurant — Abidjan, Côte d'Ivoire</p>
+  </div>
+</div>
+
+<script>
+function send(){
+  const p=document.getElementById('fp').value.trim();
+  const e=document.getElementById('fe').value.trim();
+  if(!p||!e){alert('Merci de renseigner votre prénom et votre email.');return;}
+  document.getElementById('suc').style.display='block';
+  ['fp','fn','fe','ft2','fd','fh','fc','fo','fm'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.value='';
+  });
+  setTimeout(()=>document.getElementById('suc').style.display='none',6000);
+}
+</script>
+</body>
+</html>
